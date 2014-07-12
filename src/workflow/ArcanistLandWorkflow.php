@@ -279,6 +279,10 @@ EOTEXT
     $this->ontoType = $this->getBranchType($this->onto);
 
     $remote_default = $this->isGit ? 'origin' : '';
+    $remote_default = nonempty(
+      $this->getConfigFromAnySource('arc.land.remote.default'),
+      $remote_default);
+      
     $this->remote = $this->getArgument('remote', $remote_default);
 
     if ($this->getArgument('merge')) {
